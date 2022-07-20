@@ -53,7 +53,7 @@ if __name__ == "__main__":
     token = os.environ.get("token")
     #APLICACION FUNCIONES BICIMAD_REFACT
     #creation del objeto engine para acceder a datos de BiciMad
-    connection_string = 'mysql+pymysql://ironhack_user:%' + token + '@173.201.189.217/BiciMAD'
+    connection_string = 'mysql+pymysql://ironhack_user:' + token + '@173.201.189.217/BiciMAD'
     engine = br.engine(connection_string)
     print("engine created")
     #guardamos en un df los datos de Bicimad

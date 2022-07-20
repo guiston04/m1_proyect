@@ -36,13 +36,10 @@ def file_saving_one(path_new_dir, x, y, df):
 def file_saving_all(path_new_dir, df):
     return df.to_csv(f'{path_new_dir}/embassies_bicimad.csv')
 
-def google_maps(resultado, path_google):
-    location_resultado = resultado.iloc[0]['Station Location']
-    bicimad = pd.read_csv(path_google)
-    bicimad = bicimad[bicimad["address"] == location_resultado]
-    latitude = bicimad.iloc[0]['latitude']
-    longitude = bicimad.iloc[0]['longitude']
-    url = 'https://www.google.com/maps/search/bicimad/@' + str(latitude) + ',' + str(longitude) + 'z/data=!3m1!4b1'
+def google_maps(resultado):
+    location_resultado = resultado.iloc[0]['Bicimad station']
+    list_station = location_resultado.replace(" ", "+")
+    url = 'https://www.google.com/search?q='+'bicimad+' + list_station
     return url
 
 # Argument parser function
@@ -68,7 +65,7 @@ if __name__ == '__main__':
         embassy = x + " de " + y
         pip_result = bicimad_embajada_particular(embassy, path)
         file_saving_one(path_new_dir, x, y, pip_result)
-        url = google_maps(pip_result, path_google)
+        url = google_maps(pip_result)
         print(url)
     else:
         pip_result = 'FATAL ERROR...you need to select the correct method'

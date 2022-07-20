@@ -26,17 +26,17 @@ To use the following application you will need different libraries, but develope
 
 USERS: 
 
-Pandas\
-OS\
-Argparse
+Pandas `import pandas as pd`\
+OS `import os`\
+Argparse `import argparse`
 
 DEVELOPERS:
 
-Sqlalchemy\
-Pandas\
-shapely.geometry\
-geopandas\
-requests\
+Sqlalchemy `import sqlalchemy`\
+Pandas `import pandas as pd`\
+shapely.geometry `from shapely.geometry import Point`\
+geopandas `import geopandas as gpd`\
+requests `import requests`
 
 # Usage
 
@@ -61,8 +61,7 @@ This will ask the user for no inputs.\
 Result: Dataframe with info on the nearest bicimad station.
 The dataframe will be saved in folder that will create itself when running the script. The path to get to it will be informed with the result of the command.
 
-
-m1_proyect
+# Files
 
 for_developers\
 ------| bicimad_refact\
@@ -80,7 +79,7 @@ for_users\
 ------| main_user_app.py\
 
 
-# To do/coming soon
+# Coming soon
 
 Automate the pipeline of the back end of the developer app.\
 URL that directly goes to google maps.\
