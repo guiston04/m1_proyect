@@ -3,21 +3,47 @@
 
 import argparse
 import pandas as pd
+import os
 
+#Parameters
+path = 'https://raw.githubusercontent.com/guiston04/m1_proyect/main/for_developers/files/df_embajadas_bicimad.csv'
+path_google = 'https://raw.githubusercontent.com/guiston04/m1_proyect/main/for_developers/files/df_bicimad.csv'
 
 # Script functions 
 
-def bicimad_embajadas():
-    df = pd.read_csv('https://raw.githubusercontent.com/guiston04/proyecto_m1/main/dataframes/df_embajadas_bicimad.csv')
+def bicimad_embajadas(path):
+    df = pd.read_csv(path)
     return df
     
 
-def bicimad_embajada_particular(embassy):
-    df = pd.read_csv('https://raw.githubusercontent.com/guiston04/proyecto_m1/main/dataframes/df_embajadas_bicimad.csv')
+def bicimad_embajada_particular(embassy, path):
+    df = pd.read_csv(path)
     #Resultado consulta usuario
     resultado = df[df["Place of interest"] == embassy] 
     return resultado
-    
+
+def file_creation():
+    print(os.getcwd())
+    #path_new_dir = os.path.join("./","files","results")
+    path_new_dir = './results'
+    if not os.path.exists(path_new_dir):
+        os.mkdir(path_new_dir)
+    return path_new_dir
+
+def file_saving_one(path_new_dir, x, y, df):
+    return df.to_csv(f'{path_new_dir}/{x}_de_{y}_bicimad.csv')
+
+def file_saving_all(path_new_dir, df):
+    return df.to_csv(f'{path_new_dir}/embassies_bicimad.csv')
+
+def google_maps(resultado, path_google):
+    location_resultado = resultado.iloc[0]['Station Location']
+    bicimad = pd.read_csv(path_google)
+    bicimad = bicimad[bicimad["address"] == location_resultado]
+    latitude = bicimad.iloc[0]['latitude']
+    longitude = bicimad.iloc[0]['longitude']
+    url = 'https://www.google.com/maps/search/bicimad/@' + str(latitude) + ',' + str(longitude) + 'z/data=!3m1!4b1'
+    return url
 
 # Argument parser function
 
@@ -31,14 +57,19 @@ def argument_parser():
 # Pipeline execution
 
 if __name__ == '__main__':
+    path_new_dir = file_creation()
     if argument_parser().bicimadembassy == 'all':
-        pip_result = bicimad_embajadas()
+        pip_result = bicimad_embajadas(path)
+        file_saving_all(path_new_dir, pip_result)
     elif argument_parser().bicimadembassy == 'one':
         #Pregunta al usuario si filtro por una embajada consulado en particular
-        x = input("consulado o embajada: ")
-        y = input("pais: ")
+        x = input("Consulado o Embajada: ").lower().capitalize()
+        y = input("Pais: ").lower().capitalize()
         embassy = x + " de " + y
-        pip_result = bicimad_embajada_particular(embassy)
+        pip_result = bicimad_embajada_particular(embassy, path)
+        file_saving_one(path_new_dir, x, y, pip_result)
+        url = google_maps(pip_result, path_google)
+        print(url)
     else:
         pip_result = 'FATAL ERROR...you need to select the correct method'
-    print(pip_result)
+    print(f'result saved correctly at {os.getcwd()}')
