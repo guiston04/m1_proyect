@@ -2,17 +2,16 @@
 
 #import libraries
 
-import argparse
 import pandas as pd
 from bicimad_refact import bicimad_refact as br
 from embajadas_refact import embajadas_refact as er 
 from embajadas_bicimad_refact import embajadas_bicimad_refact as ebr
+import os
+from dotenv import load_dotenv
 
 #BICIMAD STATIONS
 #PARAMETERS
 #connection string in order to connect to database de BiciMad
-
-connection_string = 'mysql+pymysql://ironhack_user:%Vq=c>G5@173.201.189.217/BiciMAD'
 
 
 #EMBAJADAS
@@ -50,8 +49,11 @@ path_save_file = './files/df_embajadas_bicimad.csv'
 
 if __name__ == "__main__":
     print("pipeline started")
+    load_dotenv('token.env')
+    token = os.environ.get("token")
     #APLICACION FUNCIONES BICIMAD_REFACT
     #creation del objeto engine para acceder a datos de BiciMad
+    connection_string = 'mysql+pymysql://ironhack_user:%' + token + '@173.201.189.217/BiciMAD'
     engine = br.engine(connection_string)
     print("engine created")
     #guardamos en un df los datos de Bicimad
