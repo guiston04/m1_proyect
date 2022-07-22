@@ -106,10 +106,10 @@ if __name__ == "__main__":
     print("lists embassy created")
     #función de creación de listas con resultado bicimad más próximo por cada embajada consulado
     print("creación empezada")
-    a, b, c = ebr.creacion(consulados_embajadas_latitudes, consulados_embajadas_longitudes,bicimad_latitudes, bicimad_longitudes, df_bicimad, distances_final, addresses_bicimad_stations_final, bicimad_stations_final)
-    distances_final = a
-    addresses_bicimad_stations_final = b
-    bicimad_stations_final = c
+    a, b = ebr.creacion(consulados_embajadas_latitudes, consulados_embajadas_longitudes,bicimad_latitudes, bicimad_longitudes, df_bicimad, distances_final, addresses_bicimad_stations_final, bicimad_stations_final)
+    #distances_final = a
+    addresses_bicimad_stations_final = a
+    bicimad_stations_final = b
     #Juntamos las columnas en un mismo dataframe para tener
     dataframe_embajadas_bicimad = ebr.dataframe(place_of_interest, type_of_place, place_address, bicimad_stations_final, addresses_bicimad_stations_final)
     print("dataframe correctamente creado")

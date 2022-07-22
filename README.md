@@ -2,7 +2,7 @@
 
 ![alt text](https://www.bicimadgo.es/Imagenes/BcmGOTrans.aspx?width=754&height=158&ext=.png)
 
-Hello everyone, and welcome to the app that is going to get diplomats in shape, reduce their stress and allow them to be in the best mindset to not start wars, as well as reduce their carbon dioxyde fingerprint!
+Hello everyone, and welcome to the app that is going to get diplomats in shape, reduce their stress and to avoid wars and make peace, as well as reduce their carbon dioxyde fingerprint!
 
 # Status
 
@@ -10,7 +10,7 @@ This is the first version of the app.
 
 # The app
 
-This app has the objective to indicate what bicimad stations is the closest to your embassy or consulate. The result the user is going to get is a dataframe with the embassy/consulate that has been selected and its nearest bicimad station.
+This app has the objective to indicate what bicimad stations is the closest to your embassy or consulate. The result the user is going to get is a dataframe with the embassy/consulate that has been selected, its nearest bicimad station, and the available number of bikes left to use!
 
 The objective is to incentivize this transportation method in the city of madrid but also to get diplomats to their crucial meetings in time as well as giving them a time to do some exercice!
 
@@ -22,7 +22,7 @@ In order to give the user this result, the application is using and crossing inf
 
 This app has been developped using python 3.9.
 
-To use the following application you will need different libraries, but developers and users will have diferente needs. These are described in the following lists:
+To use the following application you will need different libraries, but developers and users will have different needs. These are described in the following lists:
 
 USERS: 
 
@@ -40,7 +40,7 @@ requests `import requests`
 
 # Usage
 
-In order to use both apps, you'll need to have all the libraries described before installed. Once you installed them you'll just need to clone this repository or download the folders you are interested in (for_users, for_developers or both).
+In order to use both apps, you'll need to have all the libraries described before installed. Once you installed them, you'll just need to clone this repository or download the folders you are interested in (for_users, for_developers or both).
 
 Once downloaded, the USER app will need one parameter to run correctly.
 They are two possibilities:
@@ -51,7 +51,7 @@ This would be use in case you are looking for the nearest bicimad station from a
 This will ask the user for two inputs.\
 First : Embassy or Consulate\
 Second : Country\
-Result: Dataframe with info on the nearest bicimad station and URL to get faster to google maps.
+Result: Dataframe with info on the nearest bicimad station, URL to get faster to google maps and the number of bikes that are available for use.
 The dataframe will be saved in folder that will create itself when running the script. The path to get to it will be informed with the result of the command.
 
 `python main_user_app.py -be all`
@@ -83,7 +83,6 @@ for_users\
 
 Automate the pipeline of the back end of the developer app.\
 URL that directly goes to google maps.\
-Live availability of bycicles.\
 
 
 

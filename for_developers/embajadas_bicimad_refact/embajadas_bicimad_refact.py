@@ -90,7 +90,8 @@ def creacion(consulados_embajadas_latitudes, consulados_embajadas_longitudes, bi
         distances_final.append(distance_min)
         addresses_bicimad_stations_final.append(address_bicimad_station)
         bicimad_stations_final.append(bicimad_station)
-    return distances_final, addresses_bicimad_stations_final, bicimad_stations_final
+    #return distances_final, addresses_bicimad_stations_final, bicimad_stations_final
+    return addresses_bicimad_stations_final, bicimad_stations_final
 
 
 #Juntamos las columnas en un mismo dataframe para tener

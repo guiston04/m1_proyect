@@ -4,19 +4,11 @@
 import argparse
 import pandas as pd
 import os
-from api_bicimad import api_bicimad as ab
 
 
 #Parameters
 path = 'https://raw.githubusercontent.com/guiston04/m1_proyect/main/for_developers/files/df_embajadas_bicimad.csv'
 path_google = 'https://raw.githubusercontent.com/guiston04/m1_proyect/main/for_developers/files/df_bicimad.csv'
-path_api = 'https://openapi.emtmadrid.es/v1/mobilitylabs/user/login/'
-email = 'gdieude@me.com'
-password = 'CBzt6n.n3RmRewn'
-env_file = 'api_bicimad.env'
-path_data_stations = 'https://openapi.emtmadrid.es/v1/transport/bicimad/stations'
-names_stations = []
-bicis = []
 
 # Script functions 
 
@@ -49,6 +41,10 @@ def google_maps(resultado):
     url = 'https://www.google.com/search?q='+'bicimad+' + list_station
     return url
 
+def bikes_available(dataframe):
+    bikes = dataframe.iloc[0]['bikes available']
+    return bikes
+
 # Argument parser function
 
 def argument_parser():
@@ -64,7 +60,6 @@ if __name__ == '__main__':
     path_new_dir = file_creation()
     if argument_parser().bicimadembassy == 'all':
         pip_result = bicimad_embajadas(path)
-        pip_result = dataframe_bicis(pip_result, dataframe_bicis)
         file_saving_all(path_new_dir, pip_result)
     elif argument_parser().bicimadembassy == 'one':
         #Pregunta al usuario si filtro por una embajada consulado en particular
@@ -74,7 +69,10 @@ if __name__ == '__main__':
         pip_result = bicimad_embajada_particular(embassy, path)
         file_saving_one(path_new_dir, x, y, pip_result)
         url = google_maps(pip_result)
+        bikes = bikes_available(pip_result)
+        print(f'There are {bikes} bikes available')
+        print('Check the following url for more information: ' )
         print(url)
     else:
         pip_result = 'FATAL ERROR...you need to select the correct method'
-    print(f'result saved correctly at {os.getcwd()}')
+    print(f'result saved correctly at {os.getcwd()}/results')
