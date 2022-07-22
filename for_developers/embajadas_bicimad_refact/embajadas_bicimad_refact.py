@@ -103,5 +103,5 @@ def dataframe(place_of_interest, type_of_place, place_address, bicimad_stations_
 #guardamos este dataframe para acceder a él cuando ya se haga query
 
 def save(df, path_save_file):
-    df.to_csv(path_save_file)
+    df.to_csv(path_save_file, index = False)
     return "saved correctly"

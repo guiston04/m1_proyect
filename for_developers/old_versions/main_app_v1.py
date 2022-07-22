@@ -8,16 +8,11 @@ from embajadas_refact import embajadas_refact as er
 from embajadas_bicimad_refact import embajadas_bicimad_refact as ebr
 import os
 from dotenv import load_dotenv
-from api_bicimad import api_bicimad_refact as ab
 
 #BICIMAD STATIONS
 #PARAMETERS
-#connection string in order to connect to api de BiciMad
-path_api = 'https://openapi.emtmadrid.es/v1/mobilitylabs/user/login/'
-env_file = 'api_bicimad.env'
-path_data_stations = 'https://openapi.emtmadrid.es/v1/transport/bicimad/stations'
-name_stations = []
-bicis = []
+#connection string in order to connect to database de BiciMad
+
 
 #EMBAJADAS
 #PARAMETERS
@@ -111,34 +106,9 @@ if __name__ == "__main__":
     addresses_bicimad_stations_final = b
     bicimad_stations_final = c
     #Juntamos las columnas en un mismo dataframe para tener
-    dataframe_embajadas_bicimad = ebr.dataframe(place_of_interest, type_of_place, place_address, bicimad_stations_final, addresses_bicimad_stations_final)
+    dataframe_result = ebr.dataframe(place_of_interest, type_of_place, place_address, bicimad_stations_final, addresses_bicimad_stations_final)
+    print(dataframe_result)
     print("dataframe correctamente creado")
-    #CONEXIÓN A API
-    print('connecting to bicimad api')
-    #email para conexión
-    email = ab.email(env_file)
-    #password para conexión
-    password = ab.password(env_file)
-    #conexión a api
-    json_api_data = ab.api_bicimad_connection(path_api, email, password)
-    print('conection to api OK')
-    #access token obtention
-    access_token = ab.access_token(json_api_data)
-    print('access token correctly retrieved')
-    #obtención datos api stations
-    json_data_stations = ab.get_data_stations(path_data_stations, access_token)
-    print('stations data available')
-    #creación listas para dataframe bicis
-    a, b = ab.data_bicis_stations(name_stations, bicis, json_data_stations)
-    name_stations = a
-    bicis = b
-    print('lists from stations data created')
-    #creación dataframe bicis real time
-    dataframe_bicis = ab.dataframe_bicis(name_stations, bicis)
-    print('bicis dataframe created')
-    #merge con dataframe embajadas bicimad
-    dataframe_result = ab.dataframe_bicis_merged(dataframe_embajadas_bicimad, dataframe_bicis)
-    print('dataframes merged')
     #Descarga del dataframe a csv
     save_dataframe = ebr.save(dataframe_result, path_save_file)
     print("result saved")

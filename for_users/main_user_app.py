@@ -4,10 +4,19 @@
 import argparse
 import pandas as pd
 import os
+from api_bicimad import api_bicimad as ab
+
 
 #Parameters
 path = 'https://raw.githubusercontent.com/guiston04/m1_proyect/main/for_developers/files/df_embajadas_bicimad.csv'
 path_google = 'https://raw.githubusercontent.com/guiston04/m1_proyect/main/for_developers/files/df_bicimad.csv'
+path_api = 'https://openapi.emtmadrid.es/v1/mobilitylabs/user/login/'
+email = 'gdieude@me.com'
+password = 'CBzt6n.n3RmRewn'
+env_file = 'api_bicimad.env'
+path_data_stations = 'https://openapi.emtmadrid.es/v1/transport/bicimad/stations'
+names_stations = []
+bicis = []
 
 # Script functions 
 
@@ -23,8 +32,6 @@ def bicimad_embajada_particular(embassy, path):
     return resultado
 
 def file_creation():
-    print(os.getcwd())
-    #path_new_dir = os.path.join("./","files","results")
     path_new_dir = './results'
     if not os.path.exists(path_new_dir):
         os.mkdir(path_new_dir)
@@ -57,6 +64,7 @@ if __name__ == '__main__':
     path_new_dir = file_creation()
     if argument_parser().bicimadembassy == 'all':
         pip_result = bicimad_embajadas(path)
+        pip_result = dataframe_bicis(pip_result, dataframe_bicis)
         file_saving_all(path_new_dir, pip_result)
     elif argument_parser().bicimadembassy == 'one':
         #Pregunta al usuario si filtro por una embajada consulado en particular
