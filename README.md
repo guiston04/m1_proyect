@@ -74,15 +74,16 @@ for_developers\
 --------------| df_bicimad.csv\
 --------------| df_consulados_embajadas.csv\
 --------------| df_embajadas_bicimad.csv\
+------| data.py
 
 for_users\
-------| main_user_app.py\
+------| bicimat.py
 
 
 # Coming soon
 
 Automate the pipeline of the back end of the developer app.\
-URL that directly goes to google maps.\
+URL that directly goes to google maps.
 
 
 
