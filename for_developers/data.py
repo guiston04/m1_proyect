@@ -14,7 +14,7 @@ from api_bicimad import api_bicimad_refact as ab
 #PARAMETERS
 #connection string in order to connect to api de BiciMad
 path_api = 'https://openapi.emtmadrid.es/v1/mobilitylabs/user/login/'
-env_file = 'api_bicimad.env'
+env_file = '.env'
 path_data_stations = 'https://openapi.emtmadrid.es/v1/transport/bicimad/stations'
 name_stations = []
 bicis = []
@@ -54,7 +54,7 @@ path_save_file = './files/df_embajadas_bicimad.csv'
 
 if __name__ == "__main__":
     print("pipeline started")
-    load_dotenv('token.env')
+    load_dotenv('.env')
     token = os.environ.get("token")
     #APLICACION FUNCIONES BICIMAD_REFACT
     #creation del objeto engine para acceder a datos de BiciMad
