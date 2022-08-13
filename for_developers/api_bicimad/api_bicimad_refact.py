@@ -14,12 +14,12 @@ names_stations = []
 bicis = []
 
 def email(env_file):
-    load_dotenv('api_bicimad.env')
+    load_dotenv(env_file)
     email = os.environ.get("email")
     return email
 
 def password(env_file):
-    load_dotenv('api_bicimad.env')
+    load_dotenv(env_file)
     password = os.environ.get("password")
     return password
 
